@@ -4,7 +4,7 @@ import ListItem from "@material-ui/core/ListItem";
 import { styled } from "@material-ui/core/styles";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import {
   Home,
@@ -58,8 +58,9 @@ export const MainListItems = ({ selected, handleDrawerToggle }) => {
 };
 
 const SecondaryList = ({ signOut }) => {
+  const dispatch = useDispatch();
   const onSignOut = () => {
-    signOut();
+    dispatch({ type: "LOGOUT_USER" });
   };
   return (
     <StyledLink onClick={onSignOut} color="primary" to="/">

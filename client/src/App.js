@@ -15,15 +15,15 @@ const App = () => {
         {token ? (
           <Route path="/" component={HomePage}></Route>
         ) : (
-          <>
-            <Route exact path="/" component={SignIn}></Route>
+          <Switch>
             <Route exact path="/register" component={Register}></Route>
             <Route
               exact
               path="/forgetPassword"
               component={forgetPassword}
             ></Route>
-          </>
+            <Route path="/" component={SignIn}></Route>
+          </Switch>
         )}
       </Switch>
     </Router>

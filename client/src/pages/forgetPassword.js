@@ -90,7 +90,7 @@ function ForgetPassword({ signIn, error, removeError, isLoading }) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Forget Password
+          Restore Password
         </Typography>
         <form className={classes.form} noValidate>
           <TextField

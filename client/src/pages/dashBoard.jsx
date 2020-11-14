@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import { Typography, Container } from "@material-ui/core";
 import DashBoardInfoCard from "../components/DashBoardInfoCard";
 import { cardData } from ".././data/cardData";
+import QRCode from "../components/QRCode";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,6 +45,7 @@ export default function DashBoard() {
               <DashBoardInfoCard {...data} />
             </Grid>
           ))}
+          <QRCode />
         </Grid>
       </Container>
     </main>

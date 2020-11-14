@@ -1,10 +1,9 @@
 import {
+  PAGE_LOAD,
   SIGN_IN_SUCCESSFUL,
   SIGN_IN_FAILURE,
   REGISTER_SUCCESSFUL,
   REGISTER_FAILURE,
-  SIGN_UP,
-  SIGN_OUT,
   LOADING_ON,
   LOADING_OFF,
 } from "../types";
@@ -29,12 +28,10 @@ export const userReducer = (state = initialState, action) => {
         user: action.payload.user,
         token: action.payload.token,
       };
-
-    case SIGN_OUT:
+    case PAGE_LOAD:
+    case LOADING_OFF:
       return {
-        ...state,
-        isSignout: true,
-        token: null,
+        ...initialState,
       };
 
     default:

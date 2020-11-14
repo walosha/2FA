@@ -20,7 +20,7 @@ export const register = async (
       password,
       passwordConfirm,
     });
-    console.log(data.data);
+
     dispatch({
       type: REGISTER_SUCCESSFUL,
       payload: {
@@ -34,13 +34,13 @@ export const register = async (
   }
 };
 
-export const signIn = ({ userName, password }) => async (dispatch) => {
+export const signIn = async ({ email, password }, dispatch) => {
   dispatch({ type: LOADING_ON });
   try {
     const {
       data: { data, token },
-    } = await olango.post("/signin", {
-      userName,
+    } = await olango.post("/users/login", {
+      email,
       password,
     });
 

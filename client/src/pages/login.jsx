@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -14,7 +14,8 @@ import MuiAlert from "@material-ui/lab/Alert";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { signIn } from "../redux/actions/userAction";
 
 function Copyright() {
   return (
@@ -53,21 +54,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SignIn({ signIn, error, removeError, isLoading }) {
+function SignIn() {
   const classes = useStyles();
-  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch();
+  const { error, isLoading } = useSelector(({ user }) => ({
+    isLoading: user.isLoading,
+    error: user.error,
+  }));
+
+  useEffect(() => {
+    dispatch({ type: "PAGE_LOAD" });
+  }, []);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
-    removeError();
+    // removeError();
   };
 
   const onSignIn = (e) => {
     e.preventDefault();
-    signIn({ userName, password });
+    signIn({ email, password }, dispatch);
   };
 
   return (
@@ -100,12 +111,12 @@ function SignIn({ signIn, error, removeError, isLoading }) {
             margin="normal"
             required
             fullWidth
-            id="userName"
-            label="User Name"
-            name="userName"
-            autoComplete="userName"
+            id="email"
+            label="email"
+            name="email"
+            autoComplete="email"
             autoFocus
-            onChange={(e) => setUserName(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -153,10 +164,5 @@ function SignIn({ signIn, error, removeError, isLoading }) {
     </Container>
   );
 }
-
-const mapStateToProps = (state) => ({
-  error: state.error.error,
-  isLoading: state.user.isLoading,
-});
 
 export default SignIn;

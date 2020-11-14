@@ -88,7 +88,7 @@ export default function Header({ handleDrawerToggle }) {
             variant="h6"
             noWrap
           >
-            Olango Call
+            {process.env.REACT_APP_APP_NAME}
           </Typography>
 
           <Box style={{ marginLeft: "auto" }}>

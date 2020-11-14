@@ -5,7 +5,7 @@ const bycrypt = require("bcryptjs");
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: [true, "Caller ID is required"],
+    required: [true, "Username ID is required"],
     unique: true,
   },
 
