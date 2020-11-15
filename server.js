@@ -8,6 +8,8 @@ process.on("uncaughtException", (err) => {
 });
 
 dotenv.config({ path: "./config.env" });
+// mongoose.connection.dropDatabase();
+
 const app = require("./app");
 
 const DB = process.env.DATABASE.replace(
